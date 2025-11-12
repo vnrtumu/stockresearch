@@ -1,9 +1,9 @@
-import { TrendingUp, BarChart3, Building2, User } from 'lucide-react';
-import { Button } from './ui/button';
+import { TrendingUp, BarChart3, Building2, User } from "lucide-react";
+import { Button } from "./ui/button";
 
 interface HeaderProps {
   currentView: string;
-  onViewChange: (view: 'portfolio' | 'holdings' | 'brokers') => void;
+  onViewChange: (view: "portfolio" | "holdings" | "brokers") => void;
 }
 
 export function Header({ currentView, onViewChange }: HeaderProps) {
@@ -12,35 +12,42 @@ export function Header({ currentView, onViewChange }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-8">
-            <button onClick={() => onViewChange('portfolio')} className="flex items-center gap-2">
+            <button
+              onClick={() => onViewChange("portfolio")}
+              className="flex items-center gap-2"
+            >
               <TrendingUp className="h-6 w-6 text-blue-600" />
               <span className="text-xl text-gray-900">Portfolio Tracker</span>
             </button>
-            
-            <nav className="hidden md:flex items-center gap-1">
+
+            {/* show nav on mobile too; on very small screens hide text and show icons only */}
+            <nav className="flex items-center gap-1 overflow-x-auto">
               <Button
-                variant={currentView === 'portfolio' ? 'default' : 'ghost'}
-                onClick={() => onViewChange('portfolio')}
+                size="sm"
+                variant={currentView === "portfolio" ? "default" : "ghost"}
+                onClick={() => onViewChange("portfolio")}
                 className="gap-2"
               >
                 <BarChart3 className="h-4 w-4" />
-                Portfolio
+                <span className="hidden sm:inline">Portfolio</span>
               </Button>
               <Button
-                variant={currentView === 'holdings' ? 'default' : 'ghost'}
-                onClick={() => onViewChange('holdings')}
+                size="sm"
+                variant={currentView === "holdings" ? "default" : "ghost"}
+                onClick={() => onViewChange("holdings")}
                 className="gap-2"
               >
                 <TrendingUp className="h-4 w-4" />
-                Holdings
+                <span className="hidden sm:inline">Holdings</span>
               </Button>
               <Button
-                variant={currentView === 'brokers' ? 'default' : 'ghost'}
-                onClick={() => onViewChange('brokers')}
+                size="sm"
+                variant={currentView === "brokers" ? "default" : "ghost"}
+                onClick={() => onViewChange("brokers")}
                 className="gap-2"
               >
                 <Building2 className="h-4 w-4" />
-                Brokers
+                <span className="hidden sm:inline">Brokers</span>
               </Button>
             </nav>
           </div>
