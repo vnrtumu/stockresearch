@@ -1,6 +1,9 @@
 [build]
   command = "npm run build"
-  publish = "dist"
+  # Vite in this project outputs to `build/` (see CI logs). Netlify was configured to
+  # publish `dist/`, which caused the deploy to fail. Publish `build/` so Netlify
+  # serves whatever Vite produces here.
+  publish = "build"
 
 [dev]
   command = "npm run dev"
